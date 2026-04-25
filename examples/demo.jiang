@@ -1,0 +1,65 @@
+import math = "std/math.jiang";
+
+public trait HasLabel {
+    UInt8[] label();
+}
+
+public struct Box<T> {
+    T value;
+
+    init(T value) {
+        self.value = value;
+        return;
+    }
+
+    T get() {
+        return self.value;
+    }
+}
+
+enum HttpStatus {
+    ok = 200,
+    not_found = 404,
+}
+
+union(ResultKind) Result<T> {
+    T ok;
+    UInt8[] err;
+}
+
+enum ResultKind {
+    ok,
+    err,
+}
+
+record User {
+    Int id;
+    UInt8[] name = "guest";
+    Bool! active = true;
+}
+
+Int add<T>(T left, value: Int right = 1) {
+    Int base = left$.as(Int);
+    return base + right;
+}
+
+Int main() {
+    User user = User { id: 7, name: "jiang" };
+    Box<Int> box = new Box<Int>(41);
+    Result<Int> first = .ok(box.get());
+    Result<Int> second = .err("boom");
+
+    Int answer = add<Int>(first.ok, value: 1);
+    Int? maybe = user.active ? answer : null;
+    Int value = maybe ?? return 0;
+
+    if (second == .err(_ payload)) {
+        print(payload);
+    }
+
+    if (user.name != null && user.name[0] != 0) {
+        return value$.as(Int);
+    } else {
+        return HttpStatus.not_found.value;
+    }
+}

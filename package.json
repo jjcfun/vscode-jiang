@@ -1,0 +1,42 @@
+{
+  "name": "vscode-jiang",
+  "displayName": "Jiang Language",
+  "description": "Syntax highlighting support for the Jiang programming language.",
+  "version": "0.1.0",
+  "publisher": "local",
+  "license": "Apache-2.0",
+  "icon": "media/logo.svg",
+  "engines": {
+    "vscode": "^1.85.0"
+  },
+  "categories": [
+    "Programming Languages"
+  ],
+  "keywords": [
+    "jiang",
+    "syntax",
+    "highlighting"
+  ],
+  "contributes": {
+    "languages": [
+      {
+        "id": "jiang",
+        "aliases": [
+          "Jiang",
+          "jiang"
+        ],
+        "extensions": [
+          ".jiang"
+        ],
+        "configuration": "./language-configuration.json"
+      }
+    ],
+    "grammars": [
+      {
+        "language": "jiang",
+        "scopeName": "source.jiang",
+        "path": "./syntaxes/jiang.tmLanguage.json"
+      }
+    ]
+  }
+}
