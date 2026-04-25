@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="./media/logo.svg" alt="Jiang logo" width="180">
+  <img src="./media/logo.png" alt="Jiang logo" width="180">
 </p>
 
 # vscode-jiang
@@ -55,6 +55,7 @@ vscode-jiang/
   examples/
     demo.jiang
   media/
+    logo.png
     logo.svg
   package.json
   language-configuration.json
@@ -76,4 +77,4 @@ vscode-jiang/
 
 ## 图标
 
-当前仓库使用 [media/logo.svg](./media/logo.svg) 作为扩展 logo，README 顶部也直接展示该图。
+当前仓库使用 [media/logo.png](./media/logo.png) 作为扩展 logo，保留 [media/logo.svg](./media/logo.svg) 作为矢量源文件。
