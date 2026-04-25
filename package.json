@@ -5,7 +5,7 @@
   "version": "0.1.0",
   "publisher": "local",
   "license": "Apache-2.0",
-  "icon": "media/logo.svg",
+  "icon": "media/logo.png",
   "repository": {
     "type": "git",
     "url": "https://github.com/jjcfun/vscode-jiang.git"
