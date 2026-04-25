@@ -6,6 +6,14 @@
   "publisher": "local",
   "license": "Apache-2.0",
   "icon": "media/logo.svg",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/jjcfun/vscode-jiang.git"
+  },
+  "homepage": "https://github.com/jjcfun/vscode-jiang#readme",
+  "bugs": {
+    "url": "https://github.com/jjcfun/vscode-jiang/issues"
+  },
   "engines": {
     "vscode": "^1.85.0"
   },
@@ -16,6 +24,13 @@
     "jiang",
     "syntax",
     "highlighting"
+  ],
+  "files": [
+    "language-configuration.json",
+    "syntaxes/**",
+    "media/**",
+    "README.md",
+    "LICENSE"
   ],
   "contributes": {
     "languages": [
