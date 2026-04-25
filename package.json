@@ -28,7 +28,8 @@
   "files": [
     "language-configuration.json",
     "syntaxes/**",
-    "media/**",
+    "media/logo.png",
+    "media/logo.svg",
     "README.md",
     "LICENSE"
   ],
