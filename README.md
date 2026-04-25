@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="./media/logo.svg" alt="Jiang logo" width="180">
+</p>
+
 # vscode-jiang
 
 Jiang 语言的 VS Code 语法高亮扩展。
@@ -72,4 +76,4 @@ vscode-jiang/
 
 ## 图标
 
-当前仓库使用 [media/logo.svg](./media/logo.svg) 作为扩展 logo。
+当前仓库使用 [media/logo.svg](./media/logo.svg) 作为扩展 logo，README 顶部也直接展示该图。
