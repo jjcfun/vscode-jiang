@@ -12,6 +12,9 @@
       "include": "#strings"
     },
     {
+      "include": "#characters"
+    },
+    {
       "include": "#declarations"
     },
     {
@@ -82,6 +85,31 @@
         }
       ]
     },
+    "characters": {
+      "patterns": [
+        {
+          "name": "constant.character.quoted.single.jiang",
+          "begin": "'",
+          "beginCaptures": {
+            "0": {
+              "name": "punctuation.definition.character.begin.jiang"
+            }
+          },
+          "end": "'",
+          "endCaptures": {
+            "0": {
+              "name": "punctuation.definition.character.end.jiang"
+            }
+          },
+          "patterns": [
+            {
+              "name": "constant.character.escape.jiang",
+              "match": "\\\\(?:[\"'\\\\/bfnrt]|u[0-9A-Fa-f]{4})"
+            }
+          ]
+        }
+      ]
+    },
     "numbers": {
       "patterns": [
         {
@@ -98,11 +126,11 @@
       "patterns": [
         {
           "name": "keyword.control.jiang",
-          "match": "\\b(?:if|else|while|for|in|switch|try|catch|break|continue|return|defer|throw)\\b"
+          "match": "\\b(?:if|else|while|for|in|is|switch|try|catch|break|continue|return|defer|throw)\\b"
         },
         {
           "name": "keyword.declaration.jiang",
-          "match": "\\b(?:import|public|alias|extern|enum|union|struct|record|trait|extend|type|static|new)\\b"
+          "match": "\\b(?:import|public|alias|extern|enum|union|struct|record|trait|extend|associated|type|static|new)\\b"
         },
         {
           "name": "constant.language.boolean.jiang",
@@ -111,6 +139,10 @@
         {
           "name": "constant.language.null.jiang",
           "match": "\\bnull\\b"
+        },
+        {
+          "name": "constant.language.optional.some.jiang",
+          "match": "\\bsome\\b"
         },
         {
           "name": "variable.language.self.jiang",
@@ -132,6 +164,17 @@
             },
             "2": {
               "name": "entity.name.type.jiang"
+            }
+          }
+        },
+        {
+          "match": "\\b(associated)\\s+([A-Z][A-Za-z0-9_]*)",
+          "captures": {
+            "1": {
+              "name": "keyword.declaration.jiang"
+            },
+            "2": {
+              "name": "entity.name.type.associated.jiang"
             }
           }
         },
@@ -212,6 +255,14 @@
             },
             "3": {
               "name": "support.function.implicit.jiang"
+            }
+          }
+        },
+        {
+          "match": "(\\$)(?=\\b|\\.|\\[)",
+          "captures": {
+            "1": {
+              "name": "keyword.operator.address.jiang"
             }
           }
         }
@@ -314,6 +365,17 @@
     "labels": {
       "patterns": [
         {
+          "match": "(@)(where)\\b",
+          "captures": {
+            "1": {
+              "name": "punctuation.definition.annotation.jiang"
+            },
+            "2": {
+              "name": "storage.modifier.annotation.where.jiang"
+            }
+          }
+        },
+        {
           "match": "\\b([a-z_][A-Za-z0-9_]*)\\s*:",
           "captures": {
             "1": {
@@ -338,7 +400,7 @@
       "patterns": [
         {
           "name": "keyword.operator.jiang",
-          "match": "\\?\\?|\\?\\.|\\.\\.|==|!=|<=|>=|=>|[=+\\-*/%&|^~!?:.$<>]"
+          "match": "&&|\\|\\||<<|>>|\\?\\?|\\?\\.|\\.\\.|==|!=|<=|>=|=>|[=+\\-*/%&|^~!?:.$<>@]"
         }
       ]
     }

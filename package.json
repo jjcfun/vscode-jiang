@@ -2,7 +2,7 @@
   "name": "vscode-jiang",
   "displayName": "Jiang Language",
   "description": "Syntax highlighting support for the Jiang programming language.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "publisher": "jiang-language",
   "license": "Apache-2.0",
   "icon": "media/logo.png",
