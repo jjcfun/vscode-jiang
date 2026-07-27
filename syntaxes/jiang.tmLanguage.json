@@ -130,7 +130,7 @@
         },
         {
           "name": "keyword.declaration.jiang",
-          "match": "\\b(?:import|public|alias|extern|enum|union|struct|record|trait|extend|associated|type|static|new)\\b"
+          "match": "\\b(?:import|public|alias|extern|enum|union|struct|trait|extend|associated|type|static|new)\\b"
         },
         {
           "name": "constant.language.boolean.jiang",
@@ -157,7 +157,7 @@
     "declarations": {
       "patterns": [
         {
-          "match": "\\b(struct|enum|union|record|trait|type)\\s*(?:\\([^)]*\\)\\s*)?([A-Z][A-Za-z0-9_]*)",
+          "match": "\\b(struct|enum|union|trait|type)\\s*(?:\\[[^]]*\\]\\s*)?([A-Z][A-Za-z0-9_]*)",
           "captures": {
             "1": {
               "name": "keyword.declaration.jiang"
@@ -222,7 +222,7 @@
           }
         },
         {
-          "match": "\\b([A-Z][A-Za-z0-9_]*)\\s*(?=\\{)",
+          "match": "\\b([A-Z][A-Za-z0-9_]*)\\s*(?=(?:<[^>]+>)?\\s*\\()",
           "name": "entity.name.type.constructor.jiang"
         }
       ]

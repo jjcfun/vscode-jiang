@@ -11,9 +11,11 @@ Jiang 语言的 VS Code 语法高亮扩展。
 - `.jiang` 文件关联
 - `//` 单行注释高亮
 - 字符串、数字、关键字、运算符高亮
-- `struct / enum / union / record / trait / type` 声明高亮
+- `struct / enum / union / trait / type` 声明高亮
 - 内建类型与 PascalCase 类型名高亮
-- `new User(...)`、`Point { ... }` 这类构造器高亮
+- `new User(...)`、`Point(x: 1, y: 2)` 这类构造器高亮
+- `@region(...)`、`@life(...)`、`@where(...)` 这类 annotation 高亮
+- `{ value => ... }` brace closure 和尾随闭包中的 `=>` 高亮
 - `.ok`、`.a(42)` 这类 enum/union shorthand 变体高亮
 - `value$.as(Int)`、`Type$.alloc()` 这类隐式层调用高亮
 - 泛型参数、函数名、成员访问、标签参数高亮

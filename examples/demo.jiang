@@ -1,28 +1,17 @@
-import math = "std/math.jiang";
-
 public trait HasLabel {
-    UInt8[] label();
+    Int label(self);
 }
 
-public trait Iterator {
-    associated Item;
-    Item next();
-}
+public struct Box: HasLabel {
+    Int value;
 
-public struct Box<T>: HasLabel {
-    T value;
-
-    init(T value) {
+    init(self, Int value) {
         self.value = value;
         return;
     }
 
-    T get() {
-        return self.value;
-    }
-
-    UInt8[] label() {
-        return "box";
+    public Int label(self) {
+        return 1;
     }
 }
 
@@ -36,43 +25,30 @@ enum ResultKind {
     err,
 }
 
-union(ResultKind) Result<T> {
-    T ok;
-    UInt8[] err;
+union [ResultKind] Result {
+    Int ok;
+    Int err;
 }
 
-record User {
+struct User {
     Int id;
-    UInt8[] name = "guest";
-    Bool! active = true;
+    Int name = 0;
+    Bool active! = true;
 }
 
 @where(T: HasLabel)
 Int score<T>(T item) {
-    UInt8[] label = item.label();
-    return label[0]$.as(Int);
+    return item.label();
 }
 
 Int main() {
-    User user = User { id: 7, name: "jiang" };
-    Box<Int> box = Box<Int>(41);
-    Result<Int> first = .ok(box.get());
-    Result<Int> second = .err("boom");
+    User user = User(id: 7, name: 9);
+    Box box = Box(41);
+    Result second = .err(2);
+    Int value = if user.active { score(box) } else { 0 };
 
-    Int? maybe = user.active ? score(box) : null;
-    Int value = maybe ?? return 0;
-
-    switch (second) {
-        Result.err => return 1;
-        else => {}
-    }
-
-    if (maybe is some amount) {
-        return switch (HttpStatus.not_found) {
-            HttpStatus.ok => { amount }
-            HttpStatus.not_found => { value + first.ok }
-        };
-    }
-
-    return 'x'$.as(Int);
+    return switch (second) {
+        .ok(_ item) => item,
+        .err(_ code) => value + code,
+    };
 }
