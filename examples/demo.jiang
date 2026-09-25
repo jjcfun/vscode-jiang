@@ -1,3 +1,6 @@
+// 展示当前 Jiang 语法及跨文件导入，供 VS Code 的 LSP 功能验收。
+alias helper = import "./helper.jiang";
+
 public trait HasLabel {
     Int label(self);
 }
@@ -20,16 +23,13 @@ enum HttpStatus {
     not_found = 404,
 }
 
-enum ResultKind {
-    ok,
-    err,
+#doc 处理结果
+enum Result {
+    ok(Int),
+    err(Int),
 }
 
-union [ResultKind] Result {
-    Int ok;
-    Int err;
-}
-
+#doc 用户信息
 struct User {
     Int id;
     Int name = 0;
@@ -42,13 +42,12 @@ Int score<T>(T item) {
 }
 
 Int main() {
-    User user = User(id: 7, name: 9);
+    User user = User(id = 7, name = 9);
     Box box = Box(41);
     Result second = .err(2);
     Int value = if user.active { score(box) } else { 0 };
-
     return switch (second) {
         .ok(_ item) => item,
-        .err(_ code) => value + code,
+        .err(_ code) => value + code + helper.answer(),
     };
 }

@@ -1,0 +1,3 @@
+// 导出一个供 demo.jiang 导入和跨文件跳转的函数。
+#doc 返回跨文件导入示例使用的答案。
+public Int answer() { 42 }

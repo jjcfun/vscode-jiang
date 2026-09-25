@@ -1,7 +1,7 @@
 {
   "name": "vscode-jiang",
   "displayName": "Jiang Language",
-  "description": "Syntax highlighting support for the Jiang programming language.",
+  "description": "Syntax highlighting and language server support for Jiang.",
   "version": "0.1.1",
   "publisher": "jiang-language",
   "license": "Apache-2.0",
@@ -17,15 +17,24 @@
   "engines": {
     "vscode": "^1.85.0"
   },
+  "main": "./extension.js",
+  "scripts": {
+    "test:integration": "node test/run.js"
+  },
+  "activationEvents": [
+    "onLanguage:jiang"
+  ],
   "categories": [
     "Programming Languages"
   ],
   "keywords": [
     "jiang",
     "syntax",
-    "highlighting"
+    "highlighting",
+    "language server"
   ],
   "files": [
+    "extension.js",
     "language-configuration.json",
     "syntaxes/**",
     "media/logo.png",
@@ -53,6 +62,23 @@
         "scopeName": "source.jiang",
         "path": "./syntaxes/jiang.tmLanguage.json"
       }
-    ]
+    ],
+    "configuration": {
+      "title": "Jiang",
+      "properties": {
+        "jiang.serverPath": {
+          "type": "string",
+          "scope": "resource",
+          "default": "jiang",
+          "description": "Path to the Jiang CLI executable (for example /opt/jiang/bin/jiang). Leave as jiang to use PATH; a bin directory is also accepted."
+        }
+      }
+    }
+  },
+  "dependencies": {
+    "vscode-languageclient": "^9.0.1"
+  },
+  "devDependencies": {
+    "@vscode/test-electron": "^2.5.2"
   }
 }
