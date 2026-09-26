@@ -90,6 +90,44 @@ async function run() {
     assert.ok(unfinishedCompletions.items.some(item => item.label === 'value'));
     await replaceText(valid, false);
 
+    const memberSource = 'struct User { Int id; Bool active = true; public Int score(self) { 1 } }\n'
+      + 'extend User { public Int extra(self) { 2 } }\n'
+      + 'Int main() { User user = User(id = 1); user.\nInt after = 1; return after; }\n';
+    await replaceText(memberSource, true);
+    const memberPosition = document.positionAt(memberSource.indexOf('user.') + 'user.'.length);
+    const memberCompletions = await vscode.commands.executeCommand(
+      'vscode.executeCompletionItemProvider', uri, memberPosition,
+    );
+    assert.ok(['id', 'active', 'score', 'extra']
+      .every(name => memberCompletions.items.some(item => item.label === name)));
+
+    fs.writeFileSync(path.join(directory, 'helper.jiang'),
+      'public Int answer() { 1 }\nInt hidden() { 2 }\n');
+    const namespaceSource = 'alias helper = import "./helper.jiang";\n'
+      + 'Int main() { helper.\nInt after = 1; return after; }\n';
+    await replaceText(namespaceSource, true);
+    const namespacePosition = document.positionAt(namespaceSource.indexOf('helper.') + 'helper.'.length);
+    const namespaceCompletions = await vscode.commands.executeCommand(
+      'vscode.executeCompletionItemProvider', uri, namespacePosition,
+    );
+    assert.ok(namespaceCompletions.items.some(item => item.label === 'answer'));
+    assert.ok(!namespaceCompletions.items.some(item => item.label === 'hidden'));
+
+    const enumSource = 'enum Result { ok(Int), err(Int), }\n'
+      + 'Int main() { Result second = .;\nInt after = 1; return after; }\n';
+    await replaceText(enumSource, true);
+    const enumPosition = document.positionAt(enumSource.indexOf('Result second = .') + 'Result second = .'.length);
+    const enumCompletions = await vscode.commands.executeCommand(
+      'vscode.executeCompletionItemProvider', uri, enumPosition,
+    );
+    assert.deepEqual(
+      ['ok', 'err'].filter(name => enumCompletions.items.some(item => item.label === name)),
+      ['ok', 'err'],
+    );
+    assert.ok(enumCompletions.items.filter(item => ['ok', 'err'].includes(item.label))
+      .every(item => item.kind === vscode.CompletionItemKind.EnumMember));
+    await replaceText(valid, false);
+
     const examples = path.resolve(__dirname, '..', 'examples');
     const demoUri = vscode.Uri.file(path.join(examples, 'demo.jiang'));
     const helperUri = vscode.Uri.file(path.join(examples, 'helper.jiang'));

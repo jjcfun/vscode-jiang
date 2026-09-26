@@ -36,6 +36,13 @@ struct User {
     Bool active! = true;
 }
 
+extend User {
+    #doc 返回用户的两个编号之和。
+    public Int total(self) {
+        return self.id + self.name;
+    }
+}
+
 @where(T: HasLabel)
 Int score<T>(T item) {
     return item.label();

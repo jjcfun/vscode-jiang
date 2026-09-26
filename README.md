@@ -4,13 +4,13 @@
 
 # vscode-jiang
 
-Jiang 语言的 VS Code 扩展。语法高亮由扩展提供；诊断、跳转定义、悬停和基础补全由
+Jiang 语言的 VS Code 扩展。语法高亮由扩展提供；诊断、跳转定义、悬停和补全由
 Jiang 编译器的常驻 `jiang lsp` 进程提供。
 
 ## 功能
 
 - `.jiang` 文件关联
-- 未保存文件的诊断、跳转定义、悬停和基础名称补全（需要 Jiang 0.6.0 开发版编译器）
+- 未保存文件的诊断、跳转定义、悬停，以及名称、成员（含 extension）、namespace 声明和显式类型 enum 变体补全（需要 Jiang 0.6.0 开发版编译器）
 - `//` 单行注释高亮
 - 字符串、数字、关键字、运算符高亮
 - `struct / enum / union / trait / type` 声明高亮
@@ -65,6 +65,8 @@ ln -s "$(pwd)" ~/.vscode/extensions/local.vscode-jiang
 
 在 `examples/demo.jiang` 中，对 `helper.answer()` 的 `answer` 执行 **Go to Definition**，
 应跳到 `examples/helper.jiang`；在 `main` 内输入 `sco` 并按 `Ctrl+Space` 应看到 `score` 候选。
+在 `user` 后输入 `.` 应看到 `id`、`name`、`active` 和 extension 方法 `total`；在 `helper` 后输入 `.` 应看到 `answer`。
+将 `Result second = .err(2);` 暂时改为 `Result second = .;`，点号后应看到 `ok`、`err`。
 把 `helper.jiang` 的 `answer` 临时改成 `wrong`，`demo.jiang` 应出现诊断；改回后诊断应消失。
 
 使用本地 VS Code 运行集成测试：
@@ -74,7 +76,7 @@ JIANG_LSP_BIN=/absolute/path/to/jiang \
 npm run test:integration
 ```
 
-测试覆盖未保存编辑后的诊断、跳转定义和补全，以及示例文件的跨文件导入。
+测试覆盖未保存编辑后的诊断、跳转定义、名称与点号补全，以及示例文件的跨文件导入。
 可用 `JIANG_VSCODE_BIN` 指定 VS Code 可执行文件。
 
 ## 打包
