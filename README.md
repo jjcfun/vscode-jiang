@@ -88,7 +88,7 @@ cd vscode-jiang
 npx @vscode/vsce package
 ```
 
-生成后的文件会出现在当前目录，例如 `vscode-jiang-0.1.1.vsix`。
+生成后的文件会出现在当前目录，例如 `vscode-jiang-0.2.0.vsix`。
 
 ## 目录结构
 
